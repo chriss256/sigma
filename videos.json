@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Sample Video 1",
+    "description": "This is a description for Sample Video 1.",
+    "path": "videos/sample-video-1.mp4"
+  },
+  {
+    "title": "Sample Video 2",
+    "description": "This is a description for Sample Video 2.",
+    "path": "videos/sample-video-2.mp4"
+  },
+  {
+    "title": "Sample Video 3",
+    "description": "This is a description for Sample Video 3.",
+    "path": "videos/sample-video-3.mp4"
+  }
+]
