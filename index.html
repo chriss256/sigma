@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .video-item {
+      background: #fff;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .video-item h2 {
+      margin: 0 0 10px;
+      font-size: 1.5em;
+    }
+    .video-item p {
+      margin: 0 0 10px;
+    }
+    video {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Video List</h1>
+  <div id="video-list">
+    <!-- Video items will be loaded here dynamically -->
+  </div>
+
+  <script>
+    // Fetch videos.json and generate the video list dynamically
+    fetch('videos.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to load videos.json');
+        }
+        return response.json();
+      })
+      .then(videos => {
+        const videoList = document.getElementById('video-list');
+
+        // Loop through each video and create HTML elements
+        videos.forEach(video => {
+          const videoItem = document.createElement('div');
+          videoItem.className = 'video-item';
+
+          const videoTitle = document.createElement('h2');
+          videoTitle.textContent = video.title;
+
+          const videoDescription = document.createElement('p');
+          videoDescription.textContent = video.description;
+
+          const videoElement = document.createElement('video');
+          videoElement.src = video.path;
+          videoElement.controls = true;
+
+          // Append elements to the video item container
+          videoItem.appendChild(videoTitle);
+          videoItem.appendChild(videoDescription);
+          videoItem.appendChild(videoElement);
+
+          // Append video item to the main list
+          videoList.appendChild(videoItem);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading video list:', error);
+      });
+  </script>
+</body>
+</html>
